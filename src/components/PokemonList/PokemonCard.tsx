@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import Banner from './Banner';
-import { Pokemon } from '../../hooks/useGetPokemonDetails';
+import { Pokemon } from '../../hooks/GetPokemonDetails/useGetPokemonDetails';
 
 interface PokemonCardProps {
   pokemonData: Pokemon;

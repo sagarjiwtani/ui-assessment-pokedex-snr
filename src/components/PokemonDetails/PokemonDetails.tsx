@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { useGetPokemonDetails } from '../../hooks/useGetPokemonDetails';
+import { useGetPokemonDetails } from '../../hooks/GetPokemonDetails/useGetPokemonDetails';
 import PokemonDetailsLoader from '../Loaders/PokemonDetailsLoader';
 
 const typeColors: { [key: string]: string } = {

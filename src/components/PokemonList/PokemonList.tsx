@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useGetPokemons } from '../../hooks/useGetPokemons';
+import { useGetPokemons } from '../../hooks/GetPokemons/useGetPokemons';
 import LoadingCard from '../Loaders/LoadingCard';
 import PokemonCard from './PokemonCard';
 import PokemonDetailsModal from '../PokemonDetails/PokemonDetails';
