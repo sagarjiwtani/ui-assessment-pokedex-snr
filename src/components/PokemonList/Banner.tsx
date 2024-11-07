@@ -1,8 +1,10 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 
-interface BannerProps {
+interface StyleProps {
   visible: boolean;
+}
+interface BannerProps extends StyleProps {
   name: string;
   onSeeMoreClick: (id: string, name: string) => void;
   id: string;
@@ -26,10 +28,12 @@ const Banner: React.FC<BannerProps> = ({
   );
 };
 
+type UseStyleProps = Pick<BannerProps, 'visible'>;
+
 const useStyles = createUseStyles({
   banner: {
     position: 'absolute',
-    top: (props: BannerProps) => (props.visible ? '0' : '-100%'), // Slide down if visible
+    top: (props: UseStyleProps) => (props.visible ? '0' : '-100%'), // Slide down if visible
     left: 0,
     width: '100%',
     height: '100%',
@@ -41,9 +45,9 @@ const useStyles = createUseStyles({
     fontSize: '16px',
     fontWeight: 'bold',
     flexDirection: 'column',
-    opacity: (props: BannerProps) => (props.visible ? 1 : 0), // Fade in if visible
+    opacity: (props: UseStyleProps) => (props.visible ? 1 : 0), // Fade in if visible
     transition: 'opacity 0.3s ease, top 0.5s ease',
-    animation: (props: BannerProps) =>
+    animation: (props: UseStyleProps) =>
       props.visible ? '$bounce 0.5s ease' : 'none',
   },
   '@keyframes bounce': {
