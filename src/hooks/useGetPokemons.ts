@@ -1,15 +1,19 @@
 import { useMemo } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { QueryResult, useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-
-export type Pokemon = {
-  id: string;
-  name: string;
-};
+import { Pokemon } from './useGetPokemonDetails';
 
 export type PokemonOption = {
   value: Pokemon['id'];
   label: Pokemon['name'];
+};
+
+export type GetPokemonsData = {
+  pokemons: Pokemon[];
+};
+
+export type GetPokemonsVars = {
+  first: number;
 };
 
 export const GET_POKEMONS = gql`
@@ -18,11 +22,11 @@ export const GET_POKEMONS = gql`
       id
       name
       name
-      weight{
+      weight {
         minimum
         maximum
       }
-      height{
+      height {
         minimum
         maximum
       }
@@ -38,12 +42,18 @@ export const GET_POKEMONS = gql`
   }
 `;
 
-export const useGetPokemons = () => {
-  const { data, ...queryRes } = useQuery(GET_POKEMONS, {
-    variables: {
-      first: 151, // Keep hard coded
-    },
-  });
+export const useGetPokemons = (): {
+  pokemons: Pokemon[];
+  pokemonOptions: PokemonOption[];
+} & Partial<QueryResult<GetPokemonsData, GetPokemonsVars>> => {
+  const { data, ...queryRes } = useQuery<GetPokemonsData, GetPokemonsVars>(
+    GET_POKEMONS,
+    {
+      variables: {
+        first: 151, // Keep hard coded
+      },
+    }
+  );
 
   const pokemons: Pokemon[] = useMemo(() => data?.pokemons || [], [data]);
 

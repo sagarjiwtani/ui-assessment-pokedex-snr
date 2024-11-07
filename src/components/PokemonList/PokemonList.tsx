@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
 import LoadingCard from '../Loaders/LoadingCard';
 import PokemonCard from './PokemonCard';
-import PokemonDetailsModal from './PokemonDetails';
+import PokemonDetailsModal from '../PokemonDetails/PokemonDetails';
 
 export const PokemonList: React.FC = () => {
   const classes = useStyles();
@@ -97,20 +97,13 @@ const useStyles = createUseStyles(
       overflow: 'hidden',
       transition: 'all 0.4s ease',
       '&:focus': {
-        width: '350px', // Expands on focus
+        width: '350px',
         padding: '12px 20px',
         backgroundColor: '#fff',
         borderColor: '#007bff',
       },
-      // '&:focus::placeholder': {
-      //   color: '#007bff', // Changes placeholder color on focus
-      // },
-      '&::placeholder': {
-        color: '#aaa',
-        transition: 'opacity 0.2s ease',
-      },
       '&:focus::placeholder': {
-        opacity: 0, // Hide placeholder on focus
+        opacity: 0,
       },
       '&:before': {
         content: "''",

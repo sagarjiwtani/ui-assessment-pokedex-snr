@@ -3,19 +3,6 @@ import { createUseStyles } from 'react-jss';
 import { useGetPokemonDetails } from '../../hooks/useGetPokemonDetails';
 import PokemonDetailsLoader from '../Loaders/PokemonDetailsLoader';
 
-interface PokemonDetails {
-  name: string;
-  image: string;
-  height: { minimum: string; maximum: string };
-  weight: { minimum: string; maximum: string };
-  classification: string;
-  types: string[];
-  weaknesses: string[];
-  resistant: string[];
-  maxHP: number;
-  maxCP: number;
-}
-
 const typeColors: { [key: string]: string } = {
   fire: '#FF4500',
   water: '#1E90FF',
@@ -142,7 +129,7 @@ const PokemonDetailsModal: React.FC<{
             />
           </div>
         ) : (
-          <p>No Pokémon found</p>
+          <p>{'No Pokémon found'}</p>
         )}
       </div>
     </div>
